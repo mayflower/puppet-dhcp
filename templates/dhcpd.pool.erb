@@ -12,10 +12,14 @@ subnet <%= network %> netmask <%= mask %> {
   option subnet-mask <%= mask %>;
   option routers <%= gateway %>;
 
+  <% if netdomain.first != scope.lookupvar('dhcp::dnsdomain').first -%>
   option domain-name "<%= netdomain.first %>";
+  <% end -%>
+  <% if netnameservers.first != scope.lookupvar('dhcp::nameservers').first %>
   option domain-name-servers <%= netnameservers.join( ', ') %>;
+  <% end -%>
 
-  <% if has_variable?('dhcp::dnsupdatekey') and netdomain != scope.lookupvar('dhcp::dnsdomain') -%>
+  <% if has_variable?('dhcp::dnsupdatekey') and (netdomain.first != scope.lookupvar('dhcp::dnsdomain').first) -%>
   option host-name = config-option server.ddns-hostname;
 
   ddns-domainname = <%= netdomain.first %>;
