@@ -27,7 +27,7 @@ subnet <%= network %> netmask <%= mask %> {
 
   <% netdomain.each do |dom| -%>
   zone <%= dom %>. {
-    primary "<%= netnameservers.first %>";
+    primary <%= netnameservers.first %>;
     key <%= scope.lookupvar('dhcp::dnsupdatekey').split('/').last %>;
   }
   <% end -%>
