@@ -26,10 +26,10 @@ subnet <%= network %> netmask <%= mask %> {
   ddns-hostname = pick (option fqdn.hostname, option host-name, host-decl-name, concat ("dhcp-", binary-to-ascii (10, 8, "-", leased-address)));
 
   <% netdomain.each do |dom| -%>
-  zone "<%= dom %>" {
+  zone <%= dom %>. {
     primary "<%= netnameservers.first %>";
     key <%= scope.lookupvar('dhcp::dnsupdatekey').split('/').last %>;
-  };
+  }
   <% end -%>
   <% end -%>
 }
