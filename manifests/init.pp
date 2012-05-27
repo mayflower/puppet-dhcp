@@ -9,7 +9,9 @@ class dhcp (
     $pxefilename        = undef,
     $logfacility        = 'local7',
     $default_lease_time = 3600,
-    $max_lease_time     = 86400
+    $max_lease_time     = 86400,
+    $dhcp_classes       = {},
+    $raw                = []
 ) {
 
   include dhcp::params

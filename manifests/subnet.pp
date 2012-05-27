@@ -5,14 +5,12 @@ define dhcp::subnet (
     $gateway,
     $dnsdomain=undef,
     $nameservers=undef,
-    $options=[],
-    $classes={}
+    $options=[]
   ) {
 
     include dhcp::params
 
     $dhcp_dir = $dhcp::params::dhcp_dir
-    $dhcp_classes = $classes
 
     $netnameservers = $nameservers ? {
       undef   => $dhcp::nameservers,

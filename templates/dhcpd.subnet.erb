@@ -19,15 +19,6 @@ subnet <%= network %> netmask <%= mask %> {
   }
   <% end -%>
 
-  <% dhcp_classes.each do |k,v| -%>
-  class "<%= k %>"
-  {
-    <%- v.each do |l| -%>
-    <%= l %>;
-    <%- end -%>
-  }
-  <% end -%>
-
   option subnet-mask <%= mask %>;
   option routers <%= gateway %>;
 

@@ -45,6 +45,19 @@ filename "<%= pxefilename %>";
 
 log-facility <%= logfacility %>;
 
+<%- $raw.each do |l| -%>
+<%= l %>;
+<%- end -%>
+
+<% dhcp_classes.each do |k,v| -%>
+class "<%= k %>"
+{
+  <%- v.each do |l| -%>
+  <%= l %>;
+  <%- end -%>
+}
+<% end -%>
+
 include "<%= dhcp_dir %>/dhcpd.pools";
 include "<%= dhcp_dir %>/dhcpd.hosts";
 
