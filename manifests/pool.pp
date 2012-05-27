@@ -1,15 +1,18 @@
 define dhcp::pool (
     $network,
     $mask,
-    $range,
+    $pools,
     $gateway,
     $dnsdomain=undef,
-    $nameservers=undef
+    $nameservers=undef,
+    $options=[],
+    $classes={}
   ) {
 
     include dhcp::params
 
     $dhcp_dir = $dhcp::params::dhcp_dir
+    $dhcp_classes = $classes
 
     $netnameservers = $nameservers ? {
       undef   => $dhcp::nameservers,
