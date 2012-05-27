@@ -41,7 +41,7 @@ subnet <%= network %> netmask <%= mask %> {
   <% if has_variable?('dhcp::dnsupdatekey') and (netdomain.first != scope.lookupvar('dhcp::dnsdomain').first) -%>
   option host-name = config-option server.ddns-hostname;
 
-  ddns-domainname = <%= netdomain.first %>;
+  ddns-domainname = "<%= netdomain.first %>";
   ddns-hostname = pick (option fqdn.hostname, option host-name, host-decl-name, concat ("dhcp-", binary-to-ascii (10, 8, "-", leased-address)));
 
   <% netdomain.each do |dom| -%>
