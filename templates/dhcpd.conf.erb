@@ -37,7 +37,7 @@ option fqdn.no-client-update    on;  # set the "O" and "S" flag bits
 option fqdn.rcode2            255;
 option pxegrub code 150 = text ;
 
-<% if pxeserver != undef and pxeserver != "undef" and pxefilename != undef and pxefilename != "undef" -%>
+<% if pxeserver.to_s != "undef" and pxefilename.to_s != "undef" -%>
 # PXE Handoff.
 next-server <%= pxeserver %>;
 filename "<%= pxefilename %>";
